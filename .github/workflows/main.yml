@@ -26,4 +26,5 @@ jobs:
         run: |
           docker buildx create --use
           docker buildx build --platform linux/amd64,linux/arm64 -t osamapatel/test-image .
+          docker tag osamapatel/test-image osamapatel/test-image
           docker push osamapatel/test-image
