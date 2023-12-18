@@ -21,10 +21,10 @@ jobs:
 
       - name: Build and Push Docker Image
         env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
         run: |
           echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
           docker buildx create --use
-          docker buildx build --platform linux/amd64,linux/arm64 -t "${DOCKERHUB_USERNAME}/your-image-name:latest" .
-          docker push "${DOCKERHUB_USERNAME}/your-image-name:latest"
+          docker buildx build --platform linux/amd64,linux/arm64 -t "${DOCKER_HUB_USERNAME}/your-image-name:latest" .
+          docker push "${DOCKER_HUB_USERNAME}/your-image-name:latest"
