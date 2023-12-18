@@ -25,5 +25,5 @@ jobs:
           DOCKERHUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
         run: |
           docker buildx create --use
-          docker buildx build --platform linux/amd64,linux/arm64 -t "${DOCKER_HUB_USERNAME}/test-image" .
-          docker push "${DOCKER_HUB_USERNAME}/test-image"
+          docker buildx build --platform linux/amd64,linux/arm64 -t osamapatel/test-image .
+          docker push osamapatel/test-image
