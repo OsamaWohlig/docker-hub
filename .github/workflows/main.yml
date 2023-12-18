@@ -19,5 +19,5 @@ jobs:
           DOCKERHUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
         run: |
           docker build -t test-image .
-          docker login -u "${secrets.DOCKER_HUB_USERNAME}" -p "${ secrets.DOCKER_HUB_TOKEN }"
-          docker push "${secrets.DOCKER_HUB_USERNAME}/test-image"
+          docker login -u osamapatel -p dckr_pat_YkB8X7mUR1fWigei_wj9oggJSKk
+          docker push osamapatel/test-image
