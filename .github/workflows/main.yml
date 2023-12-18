@@ -13,18 +13,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
       - name: Build and Push Docker Image
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
         run: |
-          docker buildx create --use
-          docker buildx build --platform linux/amd64,linux/arm64 -t osamapatel/test-image .
-          docker tag osamapatel/test-image osamapatel/test-image
-          docker push osamapatel/test-image
+          docker build -t test-image .
+          docker run test-image
+          docker login -u "${secrets.DOCKER_HUB_USERNAME}" -p "${{ secrets.DOCKER_HUB_TOKEN }}"
+          docker push "${secrets.DOCKER_HUB_USERNAME}/test-image"
